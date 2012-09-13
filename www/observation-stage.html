@@ -6,16 +6,24 @@
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
 		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
-		<script type="test/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+		<script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
 		<script type="text/javascript" charset="utf-8" src="mtsutils.js"></script>
 	</head>
 	<body> 
 		<script type="text/javascript">
 			
-			var session = new Object();
-			session.intervals = new Array();
+			var firstInterval = new Object();
+			firstInterval.behaviors = new Array();
+			firstInterval.events = new Object();
+			firstInterval.events['VVE'] = 2;
 			
-			session.intervals[0] = interval();
+			var session = new Object();
+			session['intervals'] = new Array();
+			var intervals = session['intervals'];
+			
+			
+			intervals[0] = new Object();//interval();
+			intervals[0] = firstInterval;
 			//session.intervals[0].events = new Object();
 			//session.intervals[0].events['VVE'] += 1;
 			
@@ -35,10 +43,10 @@
 			//the amount of minutes elapsed
 			var minutes = 0;
 			
-			$(function() { 
-				$.mobile.changePage('#start-interval-dialog', {transition: 'pop', role: 'dialog'});
+			//$(document).delegate('#stage').live('pagebeforeshow', function(event) { 
+			//	$.mobile.changePage('#start-interval-dialog', {transition: 'pop', role: 'dialog'});
 		
-			});
+			//});
 			
 			function startObservation() {
 				//alert("!!!");
@@ -59,13 +67,16 @@
 			function stopObservation() {
 				clearInterval(intervalHandle);
 				clearInterval(timerHandle);
+				
+				$.mobile.changePage('report.html');
 			}
 			
 			function _interval() {
 				$.mobile.changePage('#interval-behaviors-dialog', {transition: 'pop', role: 'dialog'});
 				current_interval += 1;
 				
-				session.intervals[current_interval] = interval();
+				session.intervals[current_interval] = new Object();
+				session.intervals[current_interval].behaviors = new Array();
 				
 			}
 			
@@ -109,7 +120,7 @@
 				$("#time").text(time_display);
 			}
 		</script>
-		<div data-role="page">
+		<div data-role="page" id="stage">
 			<div data-role="header">
 				<h1>MST+</h1>
 			</div><!-- /header -->
@@ -136,7 +147,7 @@
 			</div><!-- /content -->
 		</div><!-- /page -->
 
-		<div data-role="page" id="start-interval-dialog">	
+		<div data-role="dialog" id="start-interval-dialog">	
 			<div data-role="header">
 				<h1>Start Observation</h1>
 			</div>	
@@ -220,5 +231,8 @@
 			
 			<button onclick=hideBehaviorDialog()>OK</button>
 		</div>
+	
+
+	
 	</body>
 </html>
