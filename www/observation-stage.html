@@ -41,6 +41,7 @@
 		timerHandle = setInterval(_timer, 1000);
 		
 		$("#start-observation-dialog").dialog('close');
+		window.location.href="#";
 	}
 	
 	function stopObservation() {
@@ -50,7 +51,7 @@
 	
 	function _interval() {
 		$.mobile.changePage('#interval-behaviors-dialog', {transition: 'pop', role: 'dialog'});
-		window.location.href="#";
+		
 	}
 	
 	function _timer() {
