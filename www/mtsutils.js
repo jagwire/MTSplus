@@ -14,3 +14,46 @@ function getUrlVars()
 function getUrlVar(key) {
     return getUrlVars()[key];
 }
+
+/*
+ * Object model is as follows:
+ * Session
+ *  - (Array - Interval)Intervals
+ *
+ *-- Interval
+ *  --- (Array)behaviors
+ *  --- (Object)events
+ *
+ *
+ */
+
+function interval() {
+    this.behaviors = new Array();
+    this.events = new Object();
+}
+
+
+
+function getIntervals(session) {
+    return session.intervals;
+}
+
+function getInterval(session, interval_number) {
+    return getIntervals(session)[interval_number];
+}
+
+function getBehaviors(interval) {
+    return interval.behaviors;
+}
+
+function getBehavior(interval, behavior_id) {
+    return getBehaviors(interval)[behavior_id];
+}
+
+function getEvents(interval) {
+    return interval.events;
+}
+
+function getNumberOfTimesEventOccurred(interval, event_id) {
+    return interval.events[event_id];
+}
