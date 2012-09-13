@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Cordova</title>
+<title>Observe</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
@@ -28,13 +28,16 @@
 		<label for="observer-name">Observer Name</label>
 		<input type="text" name="observer-name" id="observer-name" />
 		
+		<label for="interval-in-seconds">Select Interval:</label>
+		<select name="interval-in-seconds" id="interval-in-seconds" data-role="slider" data-mini="true">
+			<option value="15">15</option>
+			<option value="30">30</option>
+		</select>
 		<a href="start.html" data-role="button">Start Observation</a>
 	
 			
 	</div><!-- /content -->
 
 </div><!-- /page -->
-
 </body>
-
 </html>
