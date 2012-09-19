@@ -35,6 +35,8 @@ var default_events = {
 
 $(document).bind("mobileinit", function() {
         $.mobile.defaultTransition = 'none';
+        $.mobile.defaultPageTransition = 'none';
+        $.mobile.defaultDialogTransition = 'none';
     });
 
 
