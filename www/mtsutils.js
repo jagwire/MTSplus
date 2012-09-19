@@ -1,31 +1,3 @@
-//$(document).delegate('#stage','pageshow', function() { 
-  //  $.mobile.changePage('#start-interval-dialog', {transition: 'pop', role: 'dialog'});		
-//});
-
-var show = false;
-
-//if(show === false) {
-  //  alert("if!");
-    //$.mobile.changePage('#start-interval-dialog', 'pop', false, true);
-    //show = true;
-//}
-
-
-$("#stage").live('pageshow', function(event, ui) {
-    //$.mobile.changePage('#start-interval-dialog', {transition: 'pop', role: 'dialog'});
-    
-    
-    if(show === false) {
-        //alert("page init!");
-        $.mobile.changePage('#start-interval-dialog', 'pop', false, true);
-        show = true;
-    }
-    
-   // $//("#start-interval-dialog").dialog();
-    
-    //$("#start-interval-dialog").dialog('open');
-});
-
 function getUrlVars()
 {
     var vars = [], hash;
@@ -59,8 +31,6 @@ function interval() {
     this.behaviors = new Array();
     this.events = new Object();
 }
-
-
 
 function getIntervals(session) {
     return session.intervals;

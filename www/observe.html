@@ -1,44 +1,48 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<title>Observe</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-	<script type="text/javascript" charset="utf-8" src="mtsutils.js"></script>
-</head>
+    <head>
+        <title>Observe</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="mtsutils.js"></script>
+        <script type="text/javascript" charset="utf-8" src="model.js"></script>
+        <script type="text/javascript" charset="utf-8" src="load.js"></script>
+    </head>
 
-<body> 
+    <body> 
 
-<div data-role="page">
+        <div data-role="page">
 
-	<div data-role="header">
-		<h1>MST+</h1>
-	</div><!-- /header -->
+            <div data-role="header">
+                <h1>MST+</h1>
+            </div><!-- /header -->
 
-	<div data-role="content">		
-	
-		<label for="subject-name">Subject Name</label>
-		<input type="text" name="subject-name" id="subject-name" />
-	
-		<label for="subject-number">Subject Number</label>
-		<input type="text" name="subject-number" id="subject-number" />
-		
-		<label for="observer-name">Observer Name</label>
-		<input type="text" name="observer-name" id="observer-name" />
-		
-		<label for="interval-in-seconds">Select Interval:</label>
-		<select name="interval-in-seconds" id="interval-in-seconds" data-role="slider" data-mini="true">
-			<option value="15">15</option>
-			<option value="30">30</option>
-		</select>
-		<a href="observation-stage.html" rel="external" data-role="button">Start Observation</a>
-	
-			
-	</div><!-- /content -->
+            <div data-role="content">		
 
-</div><!-- /page -->
-</body>
+                <label for="subject-name">Subject Name</label>
+                <input type="text" name="subject-name" id="subject-name" />
+
+                <label for="subject-number">Subject Number</label>
+                <input type="text" name="subject-number" id="subject-number" />
+
+                <label for="observer-name">Observer Name</label>
+                <input type="text" name="observer-name" id="observer-name" />
+
+                <label for="interval-in-seconds">Select Interval:</label>
+                <select name="interval-in-seconds" id="interval-in-seconds" data-role="slider" data-mini="true">
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                </select>
+                <!-- it is very important that rel="external" is included here.
+                      without it, the dialog on observation-stage will not appear.-->
+                <a href="observation-stage.html" rel="external" data-role="button">Start Observation</a>
+
+
+            </div><!-- /content -->
+
+        </div><!-- /page -->
+    </body>
 </html>
