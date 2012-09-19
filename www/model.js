@@ -2,6 +2,7 @@ var observation = new Object();
 var intervals = new Array();
 
 var states = new Array();
+intervals.push(states);
 intervals[0].states = states;
 
 var events = new Object();

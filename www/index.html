@@ -3,17 +3,41 @@
     <head>
         <title>Cordova</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0-alpha.1/jquery.mobile-1.2.0-alpha.1.min.css" />
+		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0-alpha.1/jquery.mobile-1.2.0-alpha.1.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
         <script type="text/javascript" charset="utf-8" src="mtsutils.js"></script>
         <script type="text/javascript" charset="utf-8" src="model.js"></script>
         <script type="text/javascript" charset="utf-8" src="load.js"></script>
+        <style type="text/css">
+            #popupPanel-popup {
+                right: 0 !important;
+                left: auto !important;
+            }
+            #popupPanel {
+                width: 200px;
+                border: 1px solid #000;
+                border-right: none;
+                background: rgba(0,0,0,.5);
+                margin: -1px 0;
+            }
+            #popupPanel .ui-btn {
+                margin: 2em 15px;
+            }
+        </style>
     </head>
 
     <body> 
-
+        <script type="text/javascript">
+            $("#popupPanel").on({
+                popupbeforeposition: function() {
+                    var h = $(window).height();
+                    
+                    $("#popupPanel").css("height", h);
+                }
+            });
+        </script>
         <div data-role="page">
 
             <div data-role="header">
@@ -24,12 +48,20 @@
 
                 <a href="observe.html" data-role="button">Observe</a>
                 <a href="program.html" data-role="button">Settings</a>
-                
+                <a href="#popupPanel" data-role="button" data-transition="slide" data-rel="popup" data-position-to="window">TEST!</a>
+            
+                        <div data-role="popup" id="popupPanel" data-corners="false" data-theme"none" data-shadow="false" data-tolerance="0,0">
+            <button>TEST 1</button>
+            <button>TEST 2</button>
+            <button>TEST 3</button>
+        </div>                
 
 
             </div><!-- /content -->
 
         </div><!-- /page -->
+        
+
 
     </body>
 

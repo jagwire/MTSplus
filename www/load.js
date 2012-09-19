@@ -27,6 +27,13 @@ var default_events = {
     CS: "Cognitive Strategies"
 };
 
+/* GLOBAL FUNCTIONS */
+
+function test() {
+    alert("!!!");
+    $("#popupPanel").popup("open");
+    //$.mobile.changePage('#popupPanel');
+}
 
 
 
