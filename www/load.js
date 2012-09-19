@@ -33,6 +33,11 @@ var default_events = {
 
 /* DOCUMENT LOADING ZONE */
 
+$(document).bind("mobileinit", function() {
+        $.mobile.defaultTransition = 'none';
+    });
+
+
 var show = false;
 
 $("#stage").live('pageshow', function(event, ui) {
