@@ -1,3 +1,29 @@
+
+/* TIMER MODEL */
+
+function Timer(time_in_seconds, intervalFunction) {
+    this.intervalTime = time_in_seconds;
+    this.intervalId = window.setInterval(_interval(), time_in_seconds);
+    
+    this.pause = function() {
+        window.clearInterval(this.intervalId);
+    }
+    
+    this.resume = function() {
+        this.intervalId = window.setInterval(_interval(), intervalTime);
+    }
+    
+    this.stop = function() {
+        window.clearInterval(this.intervalId);
+    }
+    this._interval = intervalFunction;
+}
+
+var intervalTimer = Timer(15);
+var popupTimer = Timer(5);
+
+
+/* OBSERVATION MODEL */
 var observation = new Object();
 var intervals = new Array();
 

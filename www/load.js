@@ -1,11 +1,14 @@
 /* Default Data */
 
-var default_states = {
+var level1_states = {
     MO: "Modeling",
     GP: "Guided Practice",
     NP: "Naturalistic Practice",
     PB: "Progressive Building",
     PLC: "Previously Learning Skills",
+
+}
+var level2_states = {
     FE: "Facial Expressions",
     ASB: "Appropriate Speaker Behaviors",
     ALB: "Appropriate Learning Behaviors",
@@ -84,3 +87,109 @@ function onDeviceReady() {
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);
+
+/* dungeon */
+var firstInterval = new Object();
+            firstInterval.behaviors = new Array();
+            firstInterval.events = new Object();
+            firstInterval.events['VVE'] = 2;
+			
+            var session = new Object();
+            session['intervals'] = new Array();
+            var intervals = session['intervals'];
+			
+			
+            intervals[0] = new Object();//interval();
+            intervals[0] = firstInterval;
+            //session.intervals[0].events = new Object();
+            //session.intervals[0].events['VVE'] += 1;
+			
+			
+            //to denote what interval we are on
+            var current_interval = 0;
+			
+            //to hold our javascript interval object
+            var intervalHandle;
+			
+            //to hold our javascript interval timer object
+            var timerHandle;
+			
+            //the amount of seconds elapsed
+            var seconds = 0;
+			
+            //the amount of minutes elapsed
+            var minutes = 0;
+			
+            function startObservation() {
+                //alert("!!!");
+                intervalHandle = setInterval(_interval, 15000);
+                timerHandle = setInterval(_timer, 1000);
+				
+               // $("#start-observation-dialog").dialog('close');
+                window.location.href="#";
+            }
+			
+            function hideBehaviorDialog() {
+                //$("#interval-behaviors-dialog").dialog('close');
+				$('#recurring-sample-popup').popup("close");
+                //handle interval data here
+				
+            }
+			
+            function stopObservation() {
+                clearInterval(intervalHandle);
+                clearInterval(timerHandle);
+				
+                $.mobile.changePage('report.html');
+            }
+			
+            function _interval() {
+                //$.mobile.changePage('#interval-behaviors-dialog', {transition: 'pop', role: 'dialog'});
+                
+				$('#recurring-sample-popup').popup("open");
+				
+				current_interval += 1;
+				
+                session.intervals[current_interval] = new Object();
+                session.intervals[current_interval].behaviors = new Array();
+				
+            }
+			
+            function _timer() {
+                //calculate elapsed time
+                seconds += 1;
+                //alert(seconds);
+                var mins = 0;
+                var secs = 0;
+                var minsDisplay;
+                var secsDisplay;
+				
+                mins = Math.floor(seconds/60);
+				
+                if(mins > 0) {
+                    minutes = mins;
+                    secs = seconds % 60;
+                } else {
+                    secs = seconds % 60;	
+                }
+				
+                //var mins_display = "";
+                if(mins < 10) {
+                    minsDisplay = "0"+mins;
+                } else {
+                    minsDisplay = mins;
+                }
+				
+                //var secs_display = "";
+                if(secs < 10) {
+                    secsDisplay = "0"+secs;
+                } else {
+                    secsDisplay = secs;
+                }
+
+                var time_display = minsDisplay + ":"+secsDisplay;
+		
+                //display elapsed time
+                $("#time").text(time_display);
+            }
+

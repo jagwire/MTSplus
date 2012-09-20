@@ -1,3 +1,9 @@
+function tally(str) {
+    navigator.notification.beep(2);
+}
+
+
+
 function getUrlVars()
 {
     var vars = [], hash;
