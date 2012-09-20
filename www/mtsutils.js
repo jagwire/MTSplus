@@ -1,5 +1,6 @@
 function tally(str) {
-    navigator.notification.beep(2);
+    navigator.notification.beep(1);
+    navigator.notification.vibrate(500);
 }
 
 
