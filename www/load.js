@@ -53,7 +53,10 @@ $("#stage").live('pageshow', function(event, ui) {
     
     if(show === false) {
         //alert("page init!");
-        $.mobile.changePage('#start-interval-dialog', 'pop', false, true);
+        //$.mobile.changePage('#start-interval-dialog', 'pop', false, true);
+        
+        $('#initial-sample-popup').popup("open");
+        
         show = true;
     }
 
