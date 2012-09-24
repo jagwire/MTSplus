@@ -1,30 +1,50 @@
 
 /* TIMER MODEL */
-
 function Timer(time_in_seconds, intervalFunction) {
     this.intervalTime = time_in_seconds;
-    this.intervalId = window.setInterval(_interval(), time_in_seconds);
+    //this.intervalId = window.setInterval(_interval(), time_in_seconds);
+    
+    this.start = function() {
+        this.intervalId = window.setInterval(this._interval, this.intervalTime);
+    }
     
     this.pause = function() {
         window.clearInterval(this.intervalId);
     }
     
     this.resume = function() {
-        this.intervalId = window.setInterval(_interval(), intervalTime);
+        this.intervalId = window.setInterval(this._interval, this.intervalTime);
     }
     
     this.stop = function() {
         window.clearInterval(this.intervalId);
+        this.elapsedSeconds = 0;
+        this.elapsedMinutes = 0;
     }
-    this._interval = intervalFunction;
+    
+    this.elapsedSeconds = 0;
+    this.elapsedMinutes = 0;
+    
+    this._interval = function() {
+        //console.log(elapsedSeconds);
+        //elapsedSeconds += 1;
+    
+        intervalFunction();
+    };
 }
 
-var intervalTimer = Timer(15);
-var popupTimer = Timer(5);
+var intervalTimer = Timer(15, function() {
+    //do stuff
+    });
+
+var popupTimer = Timer(5, function() {
+    //count down
+    });
 
 
 /* OBSERVATION MODEL */
 var observation = new Object();
+observation.intervalFrequency = 15;
 var intervals = new Array();
 
 var states = new Array();

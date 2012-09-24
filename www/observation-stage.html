@@ -12,10 +12,7 @@
         <script type="text/javascript" charset="utf-8" src="load.js"></script>
     </head>
     <body> 
-        <script type="text/javascript">
-			
-            
-        </script>
+ 
         <div data-role="page" id="stage">
             <div data-role="header">
                 <h1>MST+</h1>
@@ -27,15 +24,27 @@
                 <h1 id="time">00:00</h1>
                 <br/>
                 <br/>
-                <div data-role="controlgroup" data-type="horizontal">
-                    <button onclick=tally("VVE")>VVE</button>
-                    <button onclick=tally("SVF")>SVF</button>
-                    <button onclick=tally("EXT")>EXT</button>
-                    <button onclick=tally("PRO")>PRO</button>
-                    <button onclick=tally("SM")>SM</button>
-                    <button onclick=tally("EI")>EI</button>
-                    <button onclick=tally("CS")>CS</button>
-                </div>		
+
+				<table align="center">
+					<thead>
+						<div data-role="controlgroup" data-type="horizontal">
+							<tr id="event-button-row">
+							</tr>
+						</div>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="tally-box" align="center" id="VVE">0</td>
+							<td class="tally-box" align="center" id="SVF">0</td>
+							<td class="tally-box" align="center" id="EXT">0</td>
+							<td class="tally-box" align="center" id="PRO">0</td>
+							<td class="tally-box" align="center" id="SM">0</td>
+							<td class="tally-box" align="center" id="EI">0</td>
+							<td class="tally-box" align="center" id="CS">0</td>
+						</tr>
+					</tbody>
+				</table>
+
                 <br />
                 <br />
                 <br />
@@ -48,12 +57,25 @@
 						background: rgba(0, 0, 0, 0.5);
 					}
 				</style>
-                <button onclick=startObservation()>START SAMPLING</button>
+				<h2 align="center" style="color: #FF0000" id="initial-time-remaining"></h2>
+                <button data-mini="true" onclick=startObservation()>START SAMPLING</button>
                 <br />
                 <br />
-                <br />	
-
-                <fieldset data-role="controlgroup" data-type="horizontal">
+                <br />
+				
+				
+				<fieldset id="start-level1" data-role="controlgroup" data-type="horizontal" data-enhance="true">
+					<legend>Level 1:</legend>
+					<!-- radio buttons in here -->
+					
+				</fieldset>
+				<br />
+				<fieldset id="start-level2" data-role="controlgroup" data-type="horizontal" data-enhance="true">
+					<legend>Level 2:</legend>
+					<!-- radio buttons here -->
+					
+				</fieldset>
+                <!--<fieldset  data-role="controlgroup" data-type="horizontal">
 
                     <label for="MO">MO</label>
                     <label for="GP">GP</label>
@@ -82,7 +104,7 @@
                     <input type="checkbox" name="RP" id="RP" value="RP"  />
                     <input type="checkbox" name="PI" id="PI" value="PI"  />
                     <input type="checkbox" name="MPS" id="MPS" value="MPS"  />
-                </fieldset>
+                </fieldset>-->
 
             </div>
         
@@ -93,9 +115,14 @@
 						background: rgba(0, 0, 0, 0.5);
 					}
 				</style>
-				<fieldset data-role="controlgroup" data-type="horizontal">
+				
+				<h1 align="center" id="interval-label"></h1>
+				<h2 align="center" style="color: #FF0000" id="time-remaining"></h2>
+				
+				<fieldset id="recur-level1" data-role="controlgroup" data-type="horizontal">
+		
 	
-					<label for="MO">MO</label>
+					<!--<label for="MO">MO</label>
 					<label for="GP">GP</label>
 					<label for="NP">NP</label>
 					<label for="PB">PB</label>
@@ -121,11 +148,16 @@
 					<input type="checkbox" name="ER" id="ER" value="ER"  />
 					<input type="checkbox" name="RP" id="RP" value="RP"  />
 					<input type="checkbox" name="PI" id="PI" value="PI"  />
-					<input type="checkbox" name="MPS" id="MPS" value="MPS"  />
+					<input type="checkbox" name="MPS" id="MPS" value="MPS"  />-->
+				</fieldset>
+				
+				<fieldset id="recur-level2" data-role="controlgroup" data-type="horizontal">
+					
 				</fieldset>
 				<br />
 				<br />
 				<button onclick=hideBehaviorDialog()>CONTINUE</button>
+				<button onclick=clearIntervalStates()>CLEAR</button>
 			</div>
 
             </div><!-- /content -->

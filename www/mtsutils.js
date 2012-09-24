@@ -1,9 +1,22 @@
 function tally(str) {
-    navigator.notification.beep(1);
-    navigator.notification.vibrate(500);
+    //navigator.notification.beep(1);
+    //navigator.notification.vibrate(500);
+    //alert("!MEEP");
+    var tick = $("#"+str+"").text();
+    var newTick = parseInt(tick)+1;
+    
+    $("#"+str+"").text(newTick);
 }
 
+function clearTally() {
+    $(".tally-box").text("0");
+}
 
+function clearIntervalStates() {
+  //  alert("!MEEP");
+    $('.clearable').prop('checked', false);
+    $("input[type='radio']").prop("checked",false).checkboxradio("refresh");
+}
 
 function getUrlVars()
 {
