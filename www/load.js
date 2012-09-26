@@ -174,16 +174,22 @@ document.addEventListener("deviceready", onDeviceReady, false);
     //the amount of minutes elapsed
     var minutes = 0;
 			
+            
+    var observationStarted = false;
+    
     function startObservation() {
-        intervalHandle = new Timer(15000, _interval);
-        timerHandle = new Timer(1000, _timer);
-
-        intervalHandle.start();
-        timerHandle.start();
-        
-    //add third timer here
-        
-        window.location.href="#";
+        if(!observationStarted) {
+            observationStarted = true;
+            intervalHandle = new Timer(15000, _interval);
+            timerHandle = new Timer(1000, _timer);
+    
+            intervalHandle.start();
+            timerHandle.start();
+            
+        //add third timer here
+            
+            window.location.href="#";
+        }
     }
     
     function hideBehaviorDialog() {
