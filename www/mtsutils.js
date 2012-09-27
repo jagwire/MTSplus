@@ -4,7 +4,7 @@ function tally(str) {
      * beeps and vibrations not supported on iPad!
      *
      */
-    //    navigator.notification.beep(1);
+       navigator.notification.beep(1);
     //  navigator.notification.vibrate(500);
     //alert("!MEEP");
     var tick = $("#"+str+"").text();
