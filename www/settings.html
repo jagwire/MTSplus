@@ -1,4 +1,4 @@
-!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
     <head>
         <title>MTS+</title>
@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0-alpha.1/jquery.mobile-1.2.0-alpha.1.min.css" />
 		<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.2.0-alpha.1/jquery.mobile-1.2.0-alpha.1.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="http://cdnjs.cloudflare.com/ajax/libs/knockout/2.1.0/knockout-min.js"></script>
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
         <script type="text/javascript" charset="utf-8" src="mtsutils.js"></script>
         <script type="text/javascript" charset="utf-8" src="model.js"></script>
@@ -24,7 +25,9 @@
 				<br />
 				
 				<label for="select" class="select">Choose Configuration:</label>
-				<select name="select" id="select">
+				<select name="select" id="select" data-bind="options: configurations">
+					
+				
 					<option value="Default">DEFAULT</option>
 					<option value="New">NEW</option>
 				</select>

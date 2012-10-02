@@ -1,39 +1,63 @@
 /* Default Data */
-var SCI  = ({
-    level1_states: {
-        MO: "Modeling",
-        GP: "Guided Practice",
-        NP: "Naturalistic Practice",
-        PB: "Progressive Building",
-        PLC: "Previously Learning Skills",
-        OTHER: "Other"
-    
-    },
-    
-    level2_states: {
-        FE: "Facial Expressions",
-        ASB: "Appropriate Speaker Behaviors",
-        ALB: "Appropriate Learning Behaviors",
-        TT: "Turn Taking",
-        ER: "Emotional Ranges",
-        RP: "Recognizing Perspectives",
-        PI: "Problem Identification",
-        MPS: "Multiple Problem Solutions",
-        OTHER: "Other"
-       
-    },
-    
-    default_events: {
-        VVE: "Verbal/Visual Expectations",
-        SVF: "Specific Verbal Feedback",
-        EXT: "Extension",
-        PRO: "Prompting",
-        SM: "Self-Monitor",
-        EI: "Explicit Instruction",
-        CS: "Cognitive Strategies"
-    }
-});
 
+var namespaces = ({ 
+
+    SCI : {
+        level1_states: {
+            MO: "Modeling",
+            GP: "Guided Practice",
+            NP: "Naturalistic Practice",
+            PB: "Progressive Building",
+            PLC: "Previously Learning Skills",
+            OTHER: "Other"
+        
+        },
+        
+        level2_states: {
+            FE: "Facial Expressions",
+            ASB: "Appropriate Speaker Behaviors",
+            ALB: "Appropriate Learning Behaviors",
+            TT: "Turn Taking",
+            ER: "Emotional Ranges",
+            RP: "Recognizing Perspectives",
+            PI: "Problem Identification",
+            MPS: "Multiple Problem Solutions",
+            OTHER: "Other"
+           
+        },
+        
+        default_events: {
+            VVE: "Verbal/Visual Expectations",
+            SVF: "Specific Verbal Feedback",
+            EXT: "Extension",
+            PRO: "Prompting",
+            SM: "Self-Monitor",
+            EI: "Explicit Instruction",
+            CS: "Cognitive Strategies"
+        }
+    },
+    Ryan: {
+        level1_states: {
+            HAPPY: "Happy",
+            SAD: "Sad"
+            
+        },
+        
+        level2_states: {
+            CALM: "Calm",
+            THOUGHT: "Thoughful"
+        },
+        
+        default_events: {
+            SPK: "Spoke",
+            MOV: "Moved"
+        }
+        
+        
+    }
+
+
+});
 /* GLOBAL FUNCTIONS */
 
 function test() {
@@ -83,9 +107,6 @@ function load_events(namespace) {
     
 }
 
-
-
-
 /* DOCUMENT LOADING ZONE */
 
 $(document).bind("mobileinit", function() {
@@ -102,8 +123,8 @@ $(document).bind("mobileinit", function() {
 var show = false;
 
 $("#stage").live('pageshow', function(event, ui) {
-    load_states(SCI);
-    load_events(SCI);
+    load_states(namespaces.SCI);
+    load_events(namespaces.SCI);
     if(show === false) {
         //alert("page init!");
         //$.mobile.changePage('#start-interval-dialog', 'pop', false, true);
@@ -112,9 +133,28 @@ $("#stage").live('pageshow', function(event, ui) {
         popupTimerHandle = new Timer(1000, _popupTimer);
         popupTimerHandle.start();
         show = true;
+        
+        
     }
 
 });
+
+var frequency = 15000;
+
+$("#observe").live('pageshow', function(event, ui) {
+    
+    //alert("observe loaded!");
+    //$(".timeSlider").slider();
+        $(".timeSlider").bind("change", function(event, ui) {
+            
+            frequency = 1000 * parseInt($(".timeSlider option:selected").val());
+            console.log("FREQUENCY: "+frequency);
+            
+      //  alert($(".timeSlider").val());
+    });
+});
+
+
 
 
 /* DATABASE LOADING ZONE */
@@ -179,8 +219,12 @@ document.addEventListener("deviceready", onDeviceReady, false);
     
     function startObservation() {
         if(!observationStarted) {
+            
+            //console.log("FORM VALUE: "+$(".timeSlider option:selected").val())
+            //var thisFrequency = 1000 * parseInt($(".timeSlider option:selected").val());
+           // console.log("FREQUENCY AT TIME OF START OBSERVATION:" +frequency);
             observationStarted = true;
-            intervalHandle = new Timer(15000, _interval);
+            intervalHandle = new Timer(frequency, _interval);
             timerHandle = new Timer(1000, _timer);
     
             intervalHandle.start();
@@ -188,7 +232,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
             
         //add third timer here
             
-            window.location.href="#";
+            //window.location.href="#";
         }
     }
     

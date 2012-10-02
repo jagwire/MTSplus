@@ -14,13 +14,13 @@
 
     <body> 
 
-        <div data-role="page">
+        <div data-role="page" id="observe">
 
             <div data-role="header">
                 <h1>MST+</h1>
             </div><!-- /header -->
 
-            <div data-role="content">		
+            <div data-role="content" >		
 
                 <label for="subject-name">Subject Name</label>
                 <input type="text" name="subject-name" id="subject-name" />
@@ -36,13 +36,13 @@
 				
 				
                 <label for="interval-in-seconds">Select Interval:</label>
-                <select name="interval-in-seconds" id="interval-in-seconds" data-role="slider" data-mini="true">
+                <select class="timeSlider" name="interval-in-seconds" id="interval-in-seconds" data-role="slider" data-mini="true">
                     <option value="15">15</option>
                     <option value="30">30</option>
                 </select>
                 <!-- it is very important that rel="external" is included here.
                       without it, the dialog on observation-stage will not appear.-->
-                <a href="observation-stage.html" rel="external" data-role="button">Start Observation</a>
+                <a href="observation-stage.html" data-role="button">Start Observation</a>
 
 
             </div><!-- /content -->
