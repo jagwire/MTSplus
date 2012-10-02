@@ -107,6 +107,28 @@ function load_events(namespace) {
     
 }
 
+/* DATABASE LOADING ZONE */
+
+var db;
+var DATABASE_NAME = "MTS";
+var DATABASE_VERSION = "1.0";
+var DATABASE_DISPLAY = "MTS+ Configurations";
+var DATABASE_SIZE = 1000000; // in bytes
+
+function loadDefaults(tx) {
+    tx.executeSql('CREATE TABLE IF NOT EXISTS Configs (id unique, data)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS States (Code unique text, Description text')
+    tx.executeSql('CREATE TABLE IF NOT EXISTS')
+    tx.executeSql('SELECT * FROM CONFIGS WHERE')
+}
+
+function onDeviceReady() {
+    db = window.openDatabase(DATABASE_NAME, DATABASE_VERSION, DATABASE_DISPLAY, DATABASE_SIZE);
+    db.transaction(loadDefaults, error, success);
+}
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
 /* DOCUMENT LOADING ZONE */
 
 $(document).bind("mobileinit", function() {
@@ -133,8 +155,7 @@ $("#stage").live('pageshow', function(event, ui) {
         popupTimerHandle = new Timer(1000, _popupTimer);
         popupTimerHandle.start();
         show = true;
-        
-        
+
     }
 
 });
@@ -152,32 +173,9 @@ $("#observe").live('pageshow', function(event, ui) {
             
       //  alert($(".timeSlider").val());
     });
+        
+        $("")
 });
-
-
-
-
-/* DATABASE LOADING ZONE */
-
-var db;
-var DATABASE_NAME = "MTS";
-var DATABASE_VERSION = "1.0";
-var DATABASE_DISPLAY = "MTS+ Configurations";
-var DATABASE_SIZE = 1000000; // in bytes
-
-function loadDefaults(tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS Configs (id unique, data)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS States (Code unique text, Description text')
-    tx.executeSql('CREATE TABLE IF NOT EXISTS')
-    tx.executeSql('SELECT * FROM CONFIGS WHERE')
-}
-
-function onDeviceReady() {
-    db = window.openDatabase(DATABASE_NAME, DATABASE_VERSION, DATABASE_DISPLAY, DATABASE_SIZE);
-    db.transaction(loadDefaults, error, success);
-}
-
-document.addEventListener("deviceready", onDeviceReady, false);
 
 /* DUNGEON ZONE */
 
@@ -213,8 +211,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
     
     //the amount of minutes elapsed
     var minutes = 0;
-			
-            
+	
+    var runningSeconds = 0;
+    var runningMinutes = 0;
+    		
     var observationStarted = false;
     
     function startObservation() {
@@ -230,8 +230,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
             intervalHandle.start();
             timerHandle.start();
             
-        //add third timer here
-            
             //window.location.href="#";
         }
     }
@@ -243,8 +241,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
         intervalHandle.resume();
         timerHandle.resume();
         
-        popupTimerHandle.stop();
-        
+        popupTimerHandle.stop();    
     }
     
     function hideInitialPopup() {
@@ -270,7 +267,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
         seconds = 0;
         minutes = 0;
         
-        $('#interval-label').text("Interval "+current_interval);
+        $('.interval-label').text(" Interval "+current_interval);
         $('#recurring-sample-popup').popup("open");
         
         current_interval += 1;
@@ -282,20 +279,31 @@ document.addEventListener("deviceready", onDeviceReady, false);
         
         popupTimerHandle.start();
  
-    }
-    
+    } 
     
     var elapsedSeconds = 0;
     var first = false;
+    var totalSeconds = 1000;
+    
+    function setTotalSeconds(total) {
+        totalSeconds = total;
+        console.log("SETTING TOTAL SECONDS: "+totalSeconds)
+    }
+    
     function _popupTimer() {
         //decrement counter in recurring popup
         elapsedSeconds += 1;
+        //var totalSeconds = $("input[name=time-length]:checked").val();
+        console.log("TIME LENGTH: "+totalSeconds);
         var secondsRemaining = 10;
         if(!first) {
-            secondsRemaining = 6 - elapsedSeconds;
+            secondsRemaining = totalSeconds - elapsedSeconds;
             $("#initial-time-remaining").text("Time Remaining: "+secondsRemaining);
         } else {
-            secondsRemaining = 4 - elapsedSeconds;
+            console.log("TOTAL SECONDS: "+totalSeconds+" - ELAPSED SECONDS: "+elapsedSeconds);
+            
+            secondsRemaining = totalSeconds - elapsedSeconds;
+            console.log("SECONDS REMAINING: "+secondsRemaining);
             $("#time-remaining").text("Time Remaining: "+secondsRemaining);
         }
 
@@ -316,6 +324,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     function _timer() {
         //calculate elapsed time
         seconds += 1;
+        runningSeconds += 1;
         //alert(seconds);
         var mins = 0;
         var secs = 0;
@@ -323,6 +332,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
         var secsDisplay;
         
         mins = Math.floor(seconds/60);
+        runningMinutes = Math.floor(runningSeconds/60);
         
         if(mins > 0) {
             minutes = mins;
@@ -349,5 +359,20 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
         //display elapsed time
         $("#time").text(time_display);
+        $("#running-time").text(formatTime(runningMinutes, runningSeconds));
+    }
+    
+    function formatTime(minutes, seconds) {
+        var ms = minutes;
+        var ss = seconds;
+        if(minutes < 10) {
+            ms = "0"+minutes;
+        }
+        
+        if(seconds < 10) {
+            ss = "0"+seconds;
+        }
+        
+        return ms+":"+ss;
     }
 

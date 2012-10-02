@@ -17,8 +17,12 @@
             <div data-role="header">
                 <h1>MST+</h1>
             </div><!-- /header -->
-            <div data-role="content">		
-                <br/>
+            <div data-role="content">
+				<div>
+					<button align="left" onclick=stopObservation() data-inline="true">DONE</button>
+					<h1 align="right"><span id="running-time">00:00</span><span class="interval-label"> Interval 1</span></h1>
+				</div>
+				<br/>
                 <br/>
                 <br/>
                 <h1 align="center" id="time">00:00</h1>
@@ -44,12 +48,6 @@
 						</tr>
 					</tbody>
 				</table>
-
-                <br />
-                <br />
-                <br />
-                <button onclick=stopObservation()>DONE</button>
-	
             <div data-role="popup" id="initial-sample-popup">
 
 				<style type="text/css">
@@ -116,7 +114,7 @@
 					}
 				</style>
 				
-				<h1 align="center" id="interval-label"></h1>
+				<h1 align="center" class="interval-label"></h1>
 				<h2 align="center" style="color: #FF0000" id="time-remaining"></h2>
 				
 				<fieldset id="recur-level1" data-role="controlgroup" data-type="horizontal">

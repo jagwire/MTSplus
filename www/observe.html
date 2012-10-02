@@ -40,6 +40,21 @@
                     <option value="15">15</option>
                     <option value="30">30</option>
                 </select>
+				
+				<br />
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Choose length of time:</legend>
+						<input onclick=setTotalSeconds(3) name="time-length" type="radio" id="choice-3" value="3" />
+						<label  for="choice-3">3</label>
+						
+						<input onclick=setTotalSeconds(5) name="time-length" type="radio" id="choice-5" value="5" />
+						<label for="choice-5">5</label>
+						
+						<input onclick=setTotalSeconds(7) name="time-length" type="radio" id="choice-7" value="7" />
+						<label for="choice-7">7</label>
+				</fieldset>
+				
+				<br />
                 <!-- it is very important that rel="external" is included here.
                       without it, the dialog on observation-stage will not appear.-->
                 <a href="observation-stage.html" data-role="button">Start Observation</a>
