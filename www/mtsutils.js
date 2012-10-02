@@ -4,7 +4,7 @@ function testbeep() {
 }
 
 function testnotify() {
-    navigator.notifiction.beep(1);
+   // navigator.notifiction.beep(1);
 }
 
 function tally(str) {
