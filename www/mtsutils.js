@@ -1,3 +1,12 @@
+function testbeep() {
+    var beep_file = new Media("beep.wav", function() { }, function() { });
+    beep_file.play();
+}
+
+function testnotify() {
+    navigator.notifiction.beep(1);
+}
+
 function tally(str) {
 
     /*
